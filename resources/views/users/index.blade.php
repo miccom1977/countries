@@ -3,11 +3,8 @@
 @section('content')
     <div class="card mb-4">
         <div class="card-header">
-            {{ __('Users') }}
+            {{ __('Visitors') }}
         </div>
-
-        <div class="alert alert-info" role="alert">Sample table page</div>
-
         <div class="card-body">
 
             <table class="table">
@@ -32,7 +29,6 @@
         </div>
 
         <div class="card-footer">
-            {{ $users->links() }}
         </div>
     </div>
 @endsection

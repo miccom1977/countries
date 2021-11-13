@@ -23,17 +23,17 @@
                 </tbody>
             </table>
         </div>
-        @if($country->visitors!==NULL)
-        This country has been visited by:<br>
-        @foreach($country->visitors as $visitor)
-            <table>
-                @foreach( $visitor->users as $singleUser)
-                <tr>
-                    <td><a href="/users/{{ $singleUser->id }}">{{ $singleUser->name }} {{ $singleUser->surname }}</a></td>
-                </tr>
-                @endforeach
-            </table>
-        @endforeach
+        @if($country->visitors!=NULL)
+            This country has been visited by:<br>
+            @foreach($country->visitors as $visitor)
+                <table>
+                    @foreach( $visitor->users as $singleUser)
+                    <tr>
+                        <td><a href="/users/{{ $singleUser->id }}">{{ $singleUser->name }} {{ $singleUser->surname }}</a></td>
+                    </tr>
+                    @endforeach
+                </table>
+            @endforeach
         @endif
         <div class="card-footer">
 
