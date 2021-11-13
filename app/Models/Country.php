@@ -16,10 +16,6 @@ class Country extends Model
         'flag'
     ];
 
-    public function countryLanguage(){
-        return $this->belongsTo('CountryLanguage')->withDefault(['name' => 'country Name', 'flag' => 'no set flag']);
-    }
-
     public function users()
     {
         //return $this->belongsToMany(RelatedModel, pivot_table_name, foreign_key_of_current_model_in_pivot_table, foreign_key_of_other_model_in_pivot_table);

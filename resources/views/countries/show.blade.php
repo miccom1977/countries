@@ -13,12 +13,14 @@
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Flag</th>
+                    <th scope="col">Official Language/ges/th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>{{ $country->name }}</td>
                         <td><img src="{{ $country->flag }}" height="25px"/></td>
+                        <td>{{ $country->language }}</td>
                     </tr>
                 </tbody>
             </table>

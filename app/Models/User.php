@@ -45,23 +45,4 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function countries()
-    {
-        //return $this->belongsToMany(RelatedModel, pivot_table_name, foreign_key_of_current_model_in_pivot_table, foreign_key_of_other_model_in_pivot_table);
-        return $this->belongsToMany(
-            Country::class,
-            'country_visitors',
-            'country_id',
-            'user_id');
-    }
-
-    public function countryVisitor(){
-        return $this->belongsToMany('App\Models\CountryVisitor');
-    }
-
-    public function country()
-    {
-        return $this->belongsToMany(Country::class, 'id');
-    }
 }

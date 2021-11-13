@@ -17,6 +17,10 @@
                             <label>Link to flag</label>
                         </td>
                         <td>
+                            <label>Official Language/es</label>
+                        </td>
+                        <td>
+
                         </td>
                     </tr>
                     <tr>
@@ -25,6 +29,9 @@
                         </td>
                         <td>
                             <input type="text" name="flag" id="flag">
+                        </td>
+                        <td>
+                            <input type="text" name="language" id="language">
                         </td>
                         <td>
                             <input type="submit" name="send" value="Dodaj" class="btn btn-dark btn-block">
