@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Country;
-use App\Models\CountryVisitor;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;

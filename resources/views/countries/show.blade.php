@@ -3,7 +3,7 @@
 @section('content')
     <div class="card mb-4">
         <div class="card-header">
-            {{ __('Coutry') }} {{ $country->name  }}
+            {{ __('Country') }} {{ $country->name  }}
         </div>
 
         <div class="card-body">
@@ -13,7 +13,7 @@
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Flag</th>
-                    <th scope="col">Official Language/ges/th>
+                    <th scope="col">Official Language/ges</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,15 +27,19 @@
         </div>
         @if($country->visitors!=NULL)
             This country has been visited by:<br>
-            @foreach($country->visitors as $visitor)
+            @forelse($country->visitors as $visitor)
                 <table>
-                    @foreach( $visitor->users as $singleUser)
+                    @forelse( $visitor->users as $singleUser)
                     <tr>
                         <td><a href="/users/{{ $singleUser->id }}">{{ $singleUser->name }} {{ $singleUser->surname }}</a></td>
                     </tr>
-                    @endforeach
+                    @empty
+                        No Visitors
+                    @endforelse
                 </table>
-            @endforeach
+            @empty
+                No Visitors
+            @endforelse
         @endif
         <div class="card-footer">
 

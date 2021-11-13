@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Models\CountryVisitor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,20 +12,11 @@ class Country extends Model
 
     protected $fillable = [
         'name',
-        'flag'
+        'flag',
+        'language'
     ];
 
     public function users()
-    {
-        //return $this->belongsToMany(RelatedModel, pivot_table_name, foreign_key_of_current_model_in_pivot_table, foreign_key_of_other_model_in_pivot_table);
-        return $this->belongsToMany(
-            User::class,
-            'country_visitors',
-            'country_id',
-            'user_id');
-    }
-
-    public function countryVisitors()
     {
         return $this->belongsToMany(
             User::class,
