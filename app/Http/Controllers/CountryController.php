@@ -4,18 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use Illuminate\Http\Request;
-use App\Services\CountryService;
 use App\Services\CountryVisitorService;
 use App\Http\Requests\CountryAddRequest;
 
 class CountryController extends Controller
 {
     private $countryVisitorService;
-    private $countryService;
 
-    public function __construct( CountryVisitorService $countryVisitorService, CountryService $countryService){
+    public function __construct( CountryVisitorService $countryVisitorService){
         $this->countryVisitorService = $countryVisitorService;
-        $this->countryService = $countryService;
     }
 
     /**
