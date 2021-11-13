@@ -22,6 +22,31 @@
                         @enderror
                     </div>
 
+                        <div class="input-group mb-3"><span class="input-group-text">
+                        <svg class="icon">
+                          <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
+                        </svg></span>
+                            <input class="form-control" type="text" name="surname" placeholder="{{ __('Surname') }}" required
+                                   autocomplete="surname" autofocus>
+                            @error('surname')
+                            <span class="invalid-feedback">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="input-group mb-3"><span class="input-group-text">
+                            <svg class="icon">
+                              <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
+                            </svg></span>
+                                <input class="form-control" type="number" name="age" placeholder="{{ __('Age') }}" required
+                                       autocomplete="age" autofocus>
+                                @error('age')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+                            </div>
+
                     <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>

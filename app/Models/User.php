@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Models\Country;
+use App\Models\CountryVisitor;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -53,5 +54,14 @@ class User extends Authenticatable
             'country_visitors',
             'country_id',
             'user_id');
+    }
+
+    public function countryVisitor(){
+        return $this->belongsToMany('App\Models\CountryVisitor');
+    }
+
+    public function country()
+    {
+        return $this->belongsToMany(Country::class, 'id');
     }
 }

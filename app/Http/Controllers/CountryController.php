@@ -4,10 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use Illuminate\Http\Request;
+use App\Services\CountryService;
+use App\Services\CountryVisitorService;
 use App\Http\Requests\CountryAddRequest;
 
 class CountryController extends Controller
 {
+    private $countryVisitorService;
+    private $countryService;
+
+    public function __construct( CountryVisitorService $countryVisitorService, CountryService $countryService){
+        $this->countryVisitorService = $countryVisitorService;
+        $this->countryService = $countryService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::paginate();
+        $countries = $this->countryVisitorService->getCountryWithVisitor();
         return view('countries.index', compact('countries'));
     }
 
@@ -47,9 +57,10 @@ class CountryController extends Controller
      * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function show(Country $country)
+    public function show( Country $country )
     {
-        //
+        $country = $this->countryVisitorService->getCountryWithVisitors($country->id);
+        return view('countries.show', compact('country'));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\CountryVisitor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -28,4 +29,14 @@ class Country extends Model
             'country_id',
             'user_id');
     }
+
+    public function countryVisitors()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'country_visitors',
+            'country_id',
+            'user_id');
+    }
+
 }

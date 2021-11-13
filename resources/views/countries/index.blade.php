@@ -41,16 +41,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($countries as $singleCountry)
+
+                    @foreach($countries as $singleCountry)
                     <tr>
-                        <td>{{ $singleCountry->name }}</td>
+                        <td><a href="country/{{ $singleCountry->id }}/">{{ $singleCountry->name }}</a></td>
                         <td><img src="{{ $singleCountry->flag }}" height="25px"/></td>
                         <td>
-                            <form method="post" action="{{ route('countryVisitor.update', $singleCountry->id ) }}">
-                                @method('PUT')
+                            @if(!$singleCountry->visitor)
+                            <form method="post" action="{{ route('countryVisitor.store') }}">
                                 @csrf
+                                <input type="hidden" name="country_id" value="{{ $singleCountry->id }}">
                                 <input type="submit" name="send" value="I Was there!" class="btn btn-dark btn-block">
                             </form>
+                            @else
+                            <form method="post" action="{{ route('countryVisitor.destroy', $singleCountry ) }}">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" name="send" value="I was not there!" class="btn btn-dark btn-block">
+                            </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

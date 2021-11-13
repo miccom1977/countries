@@ -47,6 +47,8 @@
                         <tr><td>{{ $country->name }}</td><td><img src="{{ $country->flag }}" height="25px"/></td><td>{{ $country->users_count }}</td>
                     @endforeach
                 </table>
+                    <a class="btn btn-warning" href="{{ route('export') }}">Export Countries To Excel</a>
+                </form>
 
             </div>
         </div>

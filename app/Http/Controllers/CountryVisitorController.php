@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CountryVisitor;
 use Illuminate\Http\Request;
+use App\Models\CountryVisitor;
+use App\Http\Requests\CountryVisitorEditRequest;
 
 class CountryVisitorController extends Controller
 {
@@ -33,9 +34,18 @@ class CountryVisitorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( CountryVisitorEditRequest $request )
     {
-        //
+        $countryVisitor = CountryVisitor::where('country_id', $request->country_id)->where('user_id', auth()->user()->id )->first();
+        if(!$countryVisitor){
+            $countryVisitor = new CountryVisitor;
+            $countryVisitor->country_id = $request->country_id;
+            $countryVisitor->user_id = auth()->user()->id;
+            $countryVisitor->save();
+            return back()->with('success', 'Add This country to Your list.');
+        }else{
+            return back()->with('error', 'This country is your list.');
+        }
     }
 
     /**
@@ -78,8 +88,10 @@ class CountryVisitorController extends Controller
      * @param  \App\Models\CountryVisitor  $countryVisitor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CountryVisitor $countryVisitor)
+    public function destroy($id)
     {
-        //
+        $countryVisitor = CountryVisitor::where('country_id', $id)->where('user_id', auth()->user()->id )->first();
+        $countryVisitor->delete();
+        return back()->with('error', 'Oki, you werent there.');
     }
 }

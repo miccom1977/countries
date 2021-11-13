@@ -70,6 +70,16 @@
         </div>
     </header>
     <div class="body flex-grow-1 px-3">
+        @if(Session::has('success'))
+            <div class="alert alert-success">
+                {{Session::get('success')}}
+            </div>
+        @endif
+        @if(Session::has('error'))
+            <div class="alert alert-error">
+                {{Session::get('error')}}
+            </div>
+        @endif
         <div class="container-lg">
             @yield('content')
         </div>
