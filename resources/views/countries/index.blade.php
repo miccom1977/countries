@@ -51,7 +51,7 @@
 
                     @foreach($countries as $singleCountry)
                     <tr>
-                        <td><a href="country/{{ $singleCountry->id }}/">{{ $singleCountry->name }}</a></td>
+                        <td><a href="/country/{{ $singleCountry->id }}">{{ $singleCountry->name }}</a></td>
                         <td><img src="{{ $singleCountry->flag }}" height="25px"/></td>
                         <td>
                             @if(!$singleCountry->visitor)

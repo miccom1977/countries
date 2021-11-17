@@ -5,7 +5,6 @@
         <div class="card mb-4 mx-4">
             <div class="card-body p-4">
                 <h1>Register</h1>
-
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
@@ -14,7 +13,7 @@
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
                     </svg></span>
                         <input class="form-control" type="text" name="name" placeholder="{{ __('Name') }}" required
-                               autocomplete="name" autofocus>
+                               autocomplete="name" autofocus value="{{ old('name') }}">
                         @error('name')
                         <span class="invalid-feedback">
                             {{ $message }}
@@ -22,12 +21,25 @@
                         @enderror
                     </div>
 
+                    <div class="input-group mb-3"><span class="input-group-text">
+                        <svg class="icon">
+                          <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
+                        </svg></span>
+                            <input class="form-control" type="text" name="login" placeholder="{{ __('Login') }}" required
+                                   autocomplete="login" autofocus value="{{ old('login') }}">
+                            @error('login')
+                            <span class="invalid-feedback">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+
                         <div class="input-group mb-3"><span class="input-group-text">
                         <svg class="icon">
                           <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
                         </svg></span>
                             <input class="form-control" type="text" name="surname" placeholder="{{ __('Surname') }}" required
-                                   autocomplete="surname" autofocus>
+                                   autocomplete="surname" autofocus value="{{ old('surname') }}">
                             @error('surname')
                             <span class="invalid-feedback">
                                 {{ $message }}
@@ -39,7 +51,7 @@
                               <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
                             </svg></span>
                                 <input class="form-control" type="number" name="age" placeholder="{{ __('Age') }}" required
-                                       autocomplete="age" autofocus>
+                                       autocomplete="age" autofocus value="{{ old('age') }}">
                                 @error('age')
                                 <span class="invalid-feedback">
                                     {{ $message }}
@@ -52,7 +64,7 @@
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>
                     </svg></span>
                         <input class="form-control" type="text" name="email" placeholder="{{ __('Email') }}" required
-                               autocomplete="email">
+                               autocomplete="email" value="{{ old('email') }}">
                         @error('email')
                         <span class="invalid-feedback">
                             {{ $message }}

@@ -12,9 +12,9 @@
                       <svg class="icon">
                         <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>
                       </svg></span>
-                            <input class="form-control @error('email') is-invalid @enderror" type="text" name="email"
-                                   placeholder="{{ __('Email') }}" required autofocus>
-                            @error('email')
+                            <input class="form-control @error('login') is-invalid @enderror" type="text" name="login"
+                                   placeholder="{{ __('Login') }}" required autofocus>
+                            @error('login')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

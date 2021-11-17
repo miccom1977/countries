@@ -7,12 +7,11 @@
                 <h1>{{ __('Reset Password') }}</h1>
                 <form action="{{ route('password.email') }}" method="POST">
                     @csrf
-
                     <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
                       <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>
                     </svg></span>
-                        <input class="form-control @error('email') is-invalid @enderror" type="text"
+                        <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" required
                                placeholder="{{ __('Email') }}">
                         @error('email')
                         <div class="invalid-feedback">

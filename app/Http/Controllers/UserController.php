@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function show( User $user )
     {
-        //User::withCount(['countries_users'])->get();
+        $user->load('countries');
 
         return view('users.show', compact('user'));
     }

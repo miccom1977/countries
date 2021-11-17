@@ -22,6 +22,16 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->age }}</td>
                     </tr>
+                    <tr>
+                        <td colspan"3">
+                            Visited countries:<br>
+                            @forelse($user->countries as $singleCountry)
+                            <a href="/country/{{ $singleCountry->id }}">{{ $singleCountry->name }}</a><br>
+                            @empty
+                                No Visited countries
+                            @endforelse
+                        </td>
+                    </tr>
                 </tbody>
             </table>
 
