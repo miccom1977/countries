@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use Illuminate\Http\Request;
+use App\Services\LanguageService;
 use App\Services\CountryVisitorService;
-use App\Http\Requests\CountryAddRequest;
 
 class CountryController extends Controller
 {
     private $countryVisitorService;
+    private $languageService;
 
-    public function __construct( CountryVisitorService $countryVisitorService){
+    public function __construct( CountryVisitorService $countryVisitorService, LanguageService $languageService )
+    {
         $this->countryVisitorService = $countryVisitorService;
+        $this->languageService = $languageService;
     }
 
     /**
@@ -42,9 +45,16 @@ class CountryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CountryAddRequest $request)
+    public function store(Request $request)
     {
-        Country::create($request->all());
+        $country = Country::create([
+                'name' => $request->name
+            ]
+        );
+        //add languages to country
+        $this->languageService->addLanguages( $country->id, $request->languages );
+
+
         return back()->with('success', 'New country added.');
     }
 

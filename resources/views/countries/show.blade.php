@@ -13,14 +13,26 @@
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Flag</th>
-                    <th scope="col">Official Language/ges</th>
+                    <th scope="col">Official Language/s</th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>{{ $country->name }}</td>
-                        <td><img src="{{ $country->flag }}" height="25px"/></td>
-                        <td>{{ $country->language }}</td>
+                        <td>
+                            @if ( !isset($country->file->path) )
+                                No flag
+                            @else
+                                <img src="{{ asset( '../files/'.$country->file->path ) }}" height="25px"></td>
+                            @endif
+                        </td>
+                        <td>
+                            @forelse($country->languages as $singleLanguage)
+                                {{ $singleLanguage->name }}<br>
+                            @empty
+                                No Langs
+                             @endforelse
+                        </td>
                     </tr>
                 </tbody>
             </table>

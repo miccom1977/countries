@@ -14,9 +14,6 @@
                             <label>Name</label>
                         </td>
                         <td>
-                            <label>Link to flag</label>
-                        </td>
-                        <td>
                             <label>Official Language/es</label>
                         </td>
                         <td>
@@ -28,10 +25,7 @@
                             <input type="text" name="name" id="name">
                         </td>
                         <td>
-                            <input type="text" name="flag" id="flag">
-                        </td>
-                        <td>
-                            <input type="text" name="language" id="language">
+                            <input type="text" name="languages" id="languages" style="width:350px;" placeholder="english name, add a decimal if more languages">
                         </td>
                         <td>
                             <input type="submit" name="send" value="Dodaj" class="btn btn-dark btn-block">
@@ -52,19 +46,33 @@
                     @foreach($countries as $singleCountry)
                     <tr>
                         <td><a href="/country/{{ $singleCountry->id }}">{{ $singleCountry->name }}</a></td>
-                        <td><img src="{{ $singleCountry->flag }}" height="25px"/></td>
+                        <td>
+                            @if ( !isset($singleCountry->file->path) )
+                                <form method="POST" enctype="multipart/form-data" id="upload-file" action="{{ url('store', $singleCountry->id ) }}" >
+                                    @csrf
+                                    @method('POST')
+                                    <input type="file" name="file" placeholder="Choose file" id="file">
+                                    <input type="hidden" name="country_id" value="{{ $singleCountry->id }}">
+                                        @error('file')
+                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        @enderror
+                                    <button type="submit" id="submit" class="btn btn-dark btn-block" formaction="{{ url('store/file') }}" value="file">Zapisz obrazek</button>
+                                </form>
+                            @else
+                                <img src="{{ asset( '../files/'.$singleCountry->file->path ) }}" height="25px"></td>
+                            @endif
                         <td>
                             @if(!$singleCountry->visitor)
                             <form method="post" action="{{ route('countryVisitor.store') }}">
                                 @csrf
                                 <input type="hidden" name="country_id" value="{{ $singleCountry->id }}">
-                                <input type="submit" name="send" value="I Was there!" class="btn btn-dark btn-block">
+                                <input type="submit" name="send" id="store" value="I Was there!" class="btn btn-dark btn-block">
                             </form>
                             @else
                             <form method="post" action="{{ route('countryVisitor.destroy', $singleCountry ) }}">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" name="send" value="I was not there!" class="btn btn-dark btn-block">
+                                <input type="submit" name="send" id="destroy" value="I was not there!" class="btn btn-dark btn-block">
                             </form>
                             @endif
                         </td>

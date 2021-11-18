@@ -15,11 +15,11 @@ class CountriesSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['name' => 'Poland', 'flag' => 'https://falski.info/images/UPOMINKI/dvpl_gif.jpg', 'language' =>'Polish' ],
-            ['name' => 'Germany', 'flag' => 'https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/383px-Flag_of_Germany.svg.png', 'language' =>'German' ],
-            ['name' => 'England', 'flag' => 'https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png', 'language' =>'English' ],
-            ['name' => 'Argentina', 'flag' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/240px-Flag_of_Argentina.svg.png', 'language' => 'Spanish' ],
-            ['name' => 'France', 'flag' => 'https://sklep.reklamex.com.pl/images/EUROPA/FRANCJA.jpg', 'language' => 'French' ],
+            ['name' => 'Poland','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['name' => 'Germany','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['name' => 'England','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['name' => 'Argentina','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
+            ['name' => 'France','created_at' => date("Y-m-d H:i:s"),'updated_at' => date("Y-m-d H:i:s")],
         ];
         Country::insert($data);
     }

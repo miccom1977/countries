@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CountryAddRequest extends FormRequest
+class UploadFileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,16 @@ class CountryAddRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => ['required', 'string', 'max:255']
+            'file' => 'required|mimes:gif,png,jpg,jpeg|max:2048'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'file.required' => 'Dodaj plik',
+            'file.mimes' => 'Dodany plik musi być plikem gif, png, jpg, jpeg',
+            'file.max' => 'Dodany plik może mieć max 2048 kb',
         ];
     }
 }

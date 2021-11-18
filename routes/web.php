@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     HomeController,UserController,ExportController,CountryController,ProfileController,CountryVisitorController,
+    FileController,
 };
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -49,4 +50,6 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::resource('users', UserController::class)->name('users','index');
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/upload', [FileController::class, 'createForm']);
+    Route::post('store/file', [FileController::class, 'store']);
 });
